@@ -20,8 +20,13 @@ export function Navbar() {
       <header className="sticky top-0 z-50 w-full border-b border-[var(--color-border)] bg-[var(--color-background)]/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           {/* Logo */}
-          <NavLink to="/" className="flex items-center gap-2 font-bold text-[var(--color-primary)] text-lg tracking-tight">
-            IT
+          <NavLink to="/" className="flex items-center gap-2 group">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-primary)] text-[var(--color-primary-foreground)] text-sm font-bold leading-none select-none">
+              IT
+            </span>
+            <span className="hidden sm:block font-semibold text-[var(--color-foreground)] tracking-tight group-hover:text-[var(--color-primary)] transition-colors">
+              Ian Tolentino
+            </span>
           </NavLink>
 
           {/* Desktop nav */}

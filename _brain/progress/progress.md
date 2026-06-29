@@ -38,7 +38,7 @@ Vite 8 + React 19 + TypeScript + Tailwind v4 + shadcn-style components + React R
 | A03 | Home "What I do" — IT Security → Web & Hosting card (WordPress, cPanel, SSL, perf) | 2026-06-30 |
 | A04 | Home primary skills — replaced Docker/PostgreSQL with WordPress/MySQL | 2026-06-30 |
 | A05 | index.html meta + og description updated to Full-Stack Web Developer | 2026-06-30 |
-| A06 | Navbar "IT" logo — LOW, deferred | — |
+| A06 | Navbar logo: "IT" monogram badge + "Ian Tolentino" full name on desktop | 2026-06-30 |
 | B02 | Dark/light theme toggle | — | LOW |
 | B03 | Deploy to Vercel/GitHub Pages for live URL | — | DEFERRED |
 | B04 | Contact form | — | DEFERRED |
