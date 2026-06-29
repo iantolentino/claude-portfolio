@@ -6,11 +6,28 @@ const timeline = [
   {
     icon: Briefcase,
     type: 'work',
+    title: 'Web Developer',
+    company: 'Strata Staff Global',
+    location: '',
+    period: 'June 2026 — Present',
+    current: true,
+    tags: ['WordPress', 'Full-Stack', 'cPanel', 'MySQL'],
+    achievements: [
+      'Full-stack web development: front-end, back-end, RESTful integrations, and application deployment',
+      'WordPress development and maintenance: custom themes, plugin development, performance optimization, SEO-friendly structure',
+      'cPanel hosting administration: server management, domain configuration, SSL setup, deployment workflows, troubleshooting',
+      'Database management and optimization: MySQL schema design, query optimization, backups, data integrity',
+      'Website performance, security hardening, and bug fixing across production environment',
+    ],
+  },
+  {
+    icon: Briefcase,
+    type: 'work',
     title: 'IT Security Engineer',
     company: 'Nanox Philippines, Inc.',
     location: 'Mabalacat, Pampanga',
-    period: 'June 2025 — Present',
-    current: true,
+    period: 'June 2025 — June 2026',
+    current: false,
     tags: ['PowerShell', 'Radmin', 'IT Security', 'Automation'],
     achievements: [
       'Reduced ticket resolution time by introducing standardized troubleshooting steps and knowledge base articles',
@@ -86,21 +103,18 @@ export function Experience() {
       </div>
 
       <div className="relative space-y-6">
-        {/* Vertical line */}
         <div className="absolute left-5 top-0 bottom-0 w-px bg-[var(--color-border)] hidden sm:block" />
 
         {timeline.map((item) => {
           const Icon = item.icon
           return (
-            <div key={item.title} className="flex gap-5">
-              {/* Icon node */}
+            <div key={item.title + item.company} className="flex gap-5">
               <div className="relative z-10 hidden sm:flex shrink-0">
                 <div className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-[var(--color-border)] ${iconColors[item.type]}`}>
                   <Icon size={18} />
                 </div>
               </div>
 
-              {/* Content */}
               <Card className={`flex-1 hover:border-[var(--color-primary)]/30 ${item.current ? 'border-[var(--color-primary)]/40' : ''}`}>
                 <CardHeader>
                   <div className="flex flex-wrap items-start justify-between gap-2">
