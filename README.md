@@ -1,32 +1,83 @@
-# React + TypeScript + Vite
+# Ian Tolentino — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio built with **React 19 + Vite + TypeScript + Tailwind CSS v4**.
 
-Currently, two official plugins are available:
+Live projects fetched directly from the GitHub API — no hardcoded data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Layer | Tech |
+|---|---|
+| Framework | React 19 + TypeScript |
+| Build | Vite 8 |
+| Styling | Tailwind CSS v4 (CSS-first config) |
+| Routing | React Router v7 |
+| Components | shadcn/ui-style (cva + Radix primitives) |
+| Icons | lucide-react + custom SVGs (GitHub/LinkedIn) |
+| Data | GitHub REST API (live fetch, categorized, cached) |
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Pages
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+| Page | Description |
+|---|---|
+| **Home** | Hero, live GitHub stats, top 3 featured projects by stars |
+| **Projects** | All repos fetched from GitHub, filter by category + search, live counts |
+| **Skills** | Tech stack by category — pill chips, no fake percentages |
+| **Experience** | Timeline — Strata Staff Global, Nanox Philippines, internship, education |
+| **About** | Bio, education, achievements, philosophy |
+
+---
+
+## Getting Started
+
+```bash
+git clone https://github.com/iantolentino/claude-portfolio.git
+cd claude-portfolio
+pnpm install
+pnpm dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+App runs at `http://localhost:5173`
+
+> Requires Node.js 18+ and pnpm (`npm install -g pnpm` if not installed)
+
+---
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Navbar.tsx        # Sticky nav + mobile hamburger drawer
+│   ├── icons.tsx         # Custom GitHub/LinkedIn SVGs
+│   └── ui/               # Button, Badge, Card, Separator
+├── lib/
+│   ├── github.ts         # GitHub API fetch, categorize, cache, fallback
+│   └── utils.ts          # cn() utility (clsx + tailwind-merge)
+└── pages/
+    ├── Home.tsx
+    ├── Projects.tsx
+    ├── Skills.tsx
+    ├── Experience.tsx
+    └── About.tsx
+```
+
+---
+
+## GitHub API
+
+Projects are fetched live from `https://api.github.com/users/iantolentino/repos` and categorized into:
+**Web Apps · Python · Desktop · Extensions · Automation · Utilities**
+
+Falls back to static data if the API is rate-limited or unavailable.
+
+---
+
+## Contact
+
+**Ian Tolentino** — Backend Developer & Web Developer  
+[iantolentino0110@gmail.com](mailto:iantolentino0110@gmail.com) · [github.com/iantolentino](https://github.com/iantolentino) · [linkedin.com/in/iantolentino](https://www.linkedin.com/in/iantolentino)
