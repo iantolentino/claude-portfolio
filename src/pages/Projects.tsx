@@ -135,6 +135,12 @@ export function Projects() {
               className="flex flex-col overflow-hidden hover:border-[var(--color-primary)]/40 hover:-translate-y-1 cursor-pointer p-0"
               onClick={() => window.open(proj.url, '_blank', 'noopener,noreferrer')}
             >
+              <img
+                src={`https://opengraph.githubassets.com/portfolio/iantolentino/${proj.name}`}
+                alt={proj.name}
+                className="w-full h-28 object-cover border-b border-[var(--color-border)]"
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+              />
               <CardHeader className="px-4 pt-4 pb-2">
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-base leading-snug">{proj.name}</CardTitle>
@@ -142,13 +148,7 @@ export function Projects() {
                 </div>
                 <CardDescription className="mt-2 line-clamp-2">{proj.description}</CardDescription>
               </CardHeader>
-              <img
-                src={`https://opengraph.githubassets.com/portfolio/iantolentino/${proj.name}`}
-                alt={proj.name}
-                className="w-full h-28 object-cover border-y border-[var(--color-border)]"
-                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-              />
-              <CardContent className="flex-1 px-4 pb-2 pt-3">
+              <CardContent className="flex-1 px-4 pb-2">
                 <div className="flex flex-wrap gap-1.5">
                   <Badge variant="default" className="text-[10px]">{proj.language}</Badge>
                   <Badge variant="secondary" className="text-[10px]">{proj.category}</Badge>
