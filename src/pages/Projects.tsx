@@ -56,7 +56,7 @@ export function Projects() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 space-y-8">
       <div className="space-y-2">
-        <span className="inline-block rounded-full border border-[var(--color-primary)]/25 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">Work</span>
+        <span className="inline-block border-2 border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">Work</span>
         <h1 className="text-3xl font-bold text-[var(--color-foreground)] tracking-tight">Projects</h1>
         <p className="mt-1 text-[var(--color-muted-foreground)]">
           {loading ? 'Loading from GitHub...' : `${projects.length} projects across all categories`}
@@ -73,17 +73,17 @@ export function Projects() {
                 key={key}
                 onClick={() => setActive(key)}
                 className={cn(
-                  'rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-150 flex items-center gap-1.5',
+                  'px-3 py-1.5 text-sm font-medium transition-all duration-150 flex items-center gap-1.5',
                   active === key
                     ? 'bg-[var(--color-primary)] text-[var(--color-primary-foreground)]'
-                    : 'bg-[var(--color-secondary)] text-[var(--color-muted-foreground)] border border-[var(--color-border)] hover:border-[var(--color-primary)]/50 hover:text-[var(--color-foreground)]'
+                    : 'bg-[var(--color-secondary)] text-[var(--color-muted-foreground)] border-2 border-[var(--color-border)] hover:border-[var(--color-primary)]/60 hover:text-[var(--color-foreground)]'
                 )}
               >
                 {label}
                 {!loading && (
                   <span
                     className={cn(
-                      'rounded-full px-1.5 py-0.5 text-[10px] font-bold leading-none',
+                      'px-1.5 py-0.5 text-[10px] font-bold leading-none',
                       active === key
                         ? 'bg-[var(--color-primary-foreground)]/20 text-[var(--color-primary-foreground)]'
                         : 'bg-[var(--color-border)] text-[var(--color-muted-foreground)]'
@@ -104,7 +104,7 @@ export function Projects() {
             placeholder="Search projects..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="h-9 w-full sm:w-56 rounded-lg border border-[var(--color-border)] bg-[var(--color-card)] pl-8 pr-3 text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)] focus:border-transparent"
+            className="h-9 w-full sm:w-56 border-2 border-[var(--color-border)] bg-[var(--color-card)] pl-8 pr-3 text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)] focus:border-transparent"
           />
         </div>
       </div>
@@ -141,20 +141,20 @@ export function Projects() {
                 className="w-full h-28 object-cover border-b border-[var(--color-border)]"
                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
               />
-              <CardHeader>
+              <CardHeader className="px-4 pt-4 pb-2">
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-base leading-snug">{proj.name}</CardTitle>
                   <ExternalLink size={14} className="shrink-0 mt-0.5 text-[var(--color-muted-foreground)]" />
                 </div>
-                <CardDescription className="mt-2 line-clamp-3">{proj.description}</CardDescription>
+                <CardDescription className="mt-2 line-clamp-2">{proj.description}</CardDescription>
               </CardHeader>
-              <CardContent className="flex-1">
+              <CardContent className="flex-1 px-4 pb-2">
                 <div className="flex flex-wrap gap-1.5">
                   <Badge variant="default" className="text-[10px]">{proj.language}</Badge>
                   <Badge variant="secondary" className="text-[10px]">{proj.category}</Badge>
                 </div>
               </CardContent>
-              <CardFooter className="text-xs text-[var(--color-muted-foreground)]">
+              <CardFooter className="px-4 pb-3 text-xs text-[var(--color-muted-foreground)]">
                 <span className="flex items-center gap-1"><Star size={12} /> {proj.stars}</span>
                 <span className="flex items-center gap-1 ml-3"><GitFork size={12} /> {proj.forks}</span>
                 <span className="ml-auto text-[10px]">{proj.updated}</span>

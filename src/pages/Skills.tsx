@@ -73,7 +73,7 @@ const categories = [
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block rounded-full border border-[var(--color-primary)]/25 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
+    <span className="inline-block border-2 border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
       {children}
     </span>
   )
@@ -104,7 +104,7 @@ export function Skills() {
                 {skills.map((skill) => (
                   <span
                     key={skill}
-                    className={`inline-flex items-center gap-1.5 rounded-full border ${border} px-2.5 py-1 text-xs font-medium text-[var(--color-foreground)]`}
+                    className={`inline-flex items-center gap-1.5 border-2 ${border} px-2.5 py-1 text-xs font-medium text-[var(--color-foreground)]`}
                   >
                     <span className={`h-1.5 w-1.5 rounded-full ${dot}`} />
                     {skill}

@@ -88,15 +88,10 @@ const timeline = [
   },
 ]
 
-const iconColors: Record<string, string> = {
-  work: 'text-[var(--color-primary)] bg-[var(--color-primary)]/10',
-  education: 'text-purple-400 bg-purple-400/10',
-  achievement: 'text-amber-400 bg-amber-400/10',
-}
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block rounded-full border border-[var(--color-primary)]/25 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
+    <span className="inline-block border-2 border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
       {children}
     </span>
   )
@@ -115,7 +110,6 @@ export function Experience() {
         <div className="absolute left-[9px] top-3 bottom-3 w-px bg-[var(--color-border)] hidden sm:block" />
 
         {timeline.map((item) => {
-          const Icon = item.icon
           return (
             <div key={item.title + item.company} className="flex gap-5">
               <div className="relative z-10 hidden sm:flex shrink-0 items-start pt-5">

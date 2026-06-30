@@ -50,7 +50,7 @@ function useTypewriter(phrases: string[]) {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block rounded-full border border-[var(--color-primary)]/25 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
+    <span className="inline-block border-2 border-[var(--color-primary)]/40 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
       {children}
     </span>
   )
@@ -84,13 +84,13 @@ export function Home() {
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 space-y-12">
 
       {/* Hero — browser frame */}
-      <section className="rounded-2xl border border-[var(--color-border)] overflow-hidden shadow-[8px_8px_0px_var(--color-primary)]">
+      <section className="border-2 border-[var(--color-border)] overflow-hidden shadow-[8px_8px_0px_var(--color-shadow)]">
         {/* Browser chrome */}
         <div className="flex items-center gap-2 bg-[var(--color-secondary)] px-4 py-3 border-b border-[var(--color-border)]">
           <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
           <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
           <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-          <div className="ml-3 flex-1 rounded-md bg-[var(--color-background)] px-3 py-1 text-xs text-[var(--color-muted-foreground)] text-center">
+          <div className="ml-3 flex-1 bg-[var(--color-background)] px-3 py-1 text-xs text-[var(--color-muted-foreground)] text-center">
             iantolentino.dev
           </div>
         </div>
@@ -101,7 +101,7 @@ export function Home() {
             <img
               src="/avatar.jpg"
               alt="Ian Tolentino"
-              className="h-32 w-32 sm:h-40 sm:w-40 rounded-2xl object-cover border-2 border-[var(--color-border)] shadow-xl"
+              className="h-32 w-32 sm:h-40 sm:w-40 object-cover border-2 border-[var(--color-border)] shadow-xl"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Ian+Tolentino&background=1e3a5f&color=58a6ff&size=160'
               }}
@@ -119,7 +119,7 @@ export function Home() {
               Full-Stack Web Developer
             </p>
             {/* Terminal typewriter line */}
-            <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-1.5 font-mono text-sm">
+            <div className="mt-3 inline-flex items-center gap-2 border-2 border-[var(--color-border)] bg-[var(--color-background)] px-3 py-1.5 font-mono text-sm">
               <span className="text-[var(--color-success)]">&gt;</span>
               <span className="text-[var(--color-foreground)]">I {typed}</span>
               <span className="inline-block w-0.5 h-4 bg-[var(--color-primary)]" style={{ animation: 'blink 1s step-end infinite' }} />
@@ -168,7 +168,7 @@ export function Home() {
       {/* Stats */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {stats.map(({ value, label }) => (
-          <div key={label} className="rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] p-4 text-center">
+          <div key={label} className="border-2 border-[var(--color-border)] bg-[var(--color-card)] p-4 text-center shadow-[6px_6px_0px_var(--color-shadow)]">
             <div className="text-2xl font-bold text-[var(--color-primary)]">{value}</div>
             <div className="mt-1 text-xs font-medium uppercase tracking-wider text-[var(--color-muted-foreground)]">{label}</div>
           </div>
@@ -189,7 +189,7 @@ export function Home() {
         ].map(({ icon: Icon, title, desc }) => (
           <Card key={title} className="hover:border-[var(--color-primary)]/40 hover:-translate-y-1 cursor-default">
             <CardHeader>
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
+              <div className="mb-3 flex h-10 w-10 items-center justify-center bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
                 <Icon size={20} />
               </div>
               <CardTitle>{title}</CardTitle>
@@ -237,20 +237,20 @@ export function Home() {
                     className="w-full h-32 object-cover border-b border-[var(--color-border)]"
                     onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
                   />
-                  <CardHeader>
+                  <CardHeader className="px-4 pt-4 pb-2">
                     <div className="flex items-start justify-between gap-2">
                       <CardTitle className="text-base leading-snug">{proj.name}</CardTitle>
                       <ExternalLink size={14} className="shrink-0 mt-0.5 text-[var(--color-muted-foreground)]" />
                     </div>
-                    <CardDescription className="mt-2 line-clamp-3">{proj.description}</CardDescription>
+                    <CardDescription className="mt-2 line-clamp-2">{proj.description}</CardDescription>
                   </CardHeader>
-                  <CardContent className="flex-1">
+                  <CardContent className="flex-1 px-4 pb-2">
                     <div className="flex flex-wrap gap-1.5">
                       <Badge variant="default" className="text-[10px]">{proj.language}</Badge>
                       <Badge variant="secondary" className="text-[10px]">{proj.category}</Badge>
                     </div>
                   </CardContent>
-                  <CardFooter className="text-xs text-[var(--color-muted-foreground)]">
+                  <CardFooter className="px-4 pb-3 text-xs text-[var(--color-muted-foreground)]">
                     <span className="flex items-center gap-1"><Star size={12} /> {proj.stars}</span>
                     <span className="flex items-center gap-1 ml-3"><GitFork size={12} /> {proj.forks}</span>
                     <span className="ml-auto text-[10px]">{proj.updated}</span>
