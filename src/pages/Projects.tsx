@@ -138,7 +138,7 @@ export function Projects() {
               <img
                 src={`https://opengraph.githubassets.com/portfolio/iantolentino/${proj.name}`}
                 alt={proj.name}
-                className="w-full h-28 object-cover border-b border-[var(--color-border)]"
+                className="w-full h-[calc(var(--spacing)*35)] object-cover border-b border-[var(--color-border)]"
                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
               />
               <CardHeader className="px-4 pt-4 pb-2">
