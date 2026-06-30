@@ -87,7 +87,7 @@ export function Projects() {
                       'px-1.5 py-0.5 text-[10px] font-bold leading-none',
                       active === key
                         ? 'bg-[var(--color-primary-foreground)]/20 text-[var(--color-primary-foreground)]'
-                        : 'bg-[var(--color-border)] text-[var(--color-foreground)]'
+                        : 'bg-[var(--color-foreground)]/15 text-[var(--color-foreground)]'
                     )}
                   >
                     {count}
