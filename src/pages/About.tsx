@@ -16,10 +16,19 @@ const achievements = [
   'DICT Programming Course — Accredited (Sept 2024)',
 ]
 
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block rounded-full border border-[var(--color-primary)]/25 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
+      {children}
+    </span>
+  )
+}
+
 export function About() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 space-y-12">
-      <div>
+      <div className="space-y-2">
+        <SectionLabel>Story</SectionLabel>
         <h1 className="text-3xl font-bold text-[var(--color-foreground)] tracking-tight">About Me</h1>
         <p className="mt-1 text-[var(--color-muted-foreground)]">The person behind the code</p>
       </div>

@@ -94,25 +94,35 @@ const iconColors: Record<string, string> = {
   achievement: 'text-amber-400 bg-amber-400/10',
 }
 
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block rounded-full border border-[var(--color-primary)]/25 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
+      {children}
+    </span>
+  )
+}
+
 export function Experience() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 space-y-8">
-      <div>
+      <div className="space-y-2">
+        <SectionLabel>Journey</SectionLabel>
         <h1 className="text-3xl font-bold text-[var(--color-foreground)] tracking-tight">Expertise & Journey</h1>
-        <p className="mt-1 text-[var(--color-muted-foreground)]">Professional experience and education</p>
+        <p className="text-[var(--color-muted-foreground)]">Professional experience and education</p>
       </div>
 
       <div className="relative space-y-6">
-        <div className="absolute left-5 top-0 bottom-0 w-px bg-[var(--color-border)] hidden sm:block" />
+        <div className="absolute left-[9px] top-3 bottom-3 w-px bg-[var(--color-border)] hidden sm:block" />
 
         {timeline.map((item) => {
           const Icon = item.icon
           return (
             <div key={item.title + item.company} className="flex gap-5">
-              <div className="relative z-10 hidden sm:flex shrink-0">
-                <div className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-[var(--color-border)] ${iconColors[item.type]}`}>
-                  <Icon size={18} />
-                </div>
+              <div className="relative z-10 hidden sm:flex shrink-0 items-start pt-5">
+                <div className={`h-[18px] w-[18px] rotate-45 border-2 bg-[var(--color-background)] ${
+                  item.type === 'work' ? 'border-[var(--color-primary)]' :
+                  item.type === 'education' ? 'border-purple-400' : 'border-amber-400'
+                }`} />
               </div>
 
               <Card className={`flex-1 hover:border-[var(--color-primary)]/30 ${item.current ? 'border-[var(--color-primary)]/40' : ''}`}>

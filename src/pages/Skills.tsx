@@ -71,10 +71,19 @@ const categories = [
   },
 ]
 
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block rounded-full border border-[var(--color-primary)]/25 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
+      {children}
+    </span>
+  )
+}
+
 export function Skills() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 space-y-8">
-      <div>
+      <div className="space-y-2">
+        <SectionLabel>Toolkit</SectionLabel>
         <h1 className="text-3xl font-bold text-[var(--color-foreground)] tracking-tight">Skills & Expertise</h1>
         <p className="mt-1 text-[var(--color-muted-foreground)]">Technologies and tools I work with</p>
       </div>

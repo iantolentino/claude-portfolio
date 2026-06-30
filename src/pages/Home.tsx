@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Mail, ArrowRight, Code2, Server, Shield,
-  Star, GitFork, ExternalLink, MapPin, Calendar, FolderOpen,
+  Star, GitFork, ExternalLink, MapPin, Calendar, FolderOpen, Globe,
 } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/icons'
 import { Button } from '@/components/ui/button'
@@ -20,7 +20,44 @@ const STATIC_STATS = [
 const primarySkills = ['Python', 'Flask', 'FastAPI', 'JavaScript', 'WordPress', 'MySQL']
 const secondarySkills = ['React', 'TypeScript', 'PowerShell', 'Linux', 'Git']
 
+const PHRASES = [
+  'build full-stack web applications.',
+  'develop WordPress sites & REST APIs.',
+  'automate IT operations with Python.',
+  'love clean, maintainable code.',
+]
+
+function useTypewriter(phrases: string[]) {
+  const [state, setState] = useState({ text: '', idx: 0, deleting: false })
+  useEffect(() => {
+    const phrase = phrases[state.idx % phrases.length]
+    if (!state.deleting && state.text === phrase) {
+      const t = setTimeout(() => setState(s => ({ ...s, deleting: true })), 2200)
+      return () => clearTimeout(t)
+    }
+    const delay = state.deleting ? 28 : 62
+    const t = setTimeout(() => {
+      setState(s => {
+        if (!s.deleting) return { ...s, text: phrase.slice(0, s.text.length + 1) }
+        const next = s.text.slice(0, -1)
+        return next === '' ? { text: '', idx: s.idx + 1, deleting: false } : { ...s, text: next }
+      })
+    }, delay)
+    return () => clearTimeout(t)
+  }, [state, phrases])
+  return state.text
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block rounded-full border border-[var(--color-primary)]/25 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
+      {children}
+    </span>
+  )
+}
+
 export function Home() {
+  const typed = useTypewriter(PHRASES)
   const [liveStats, setLiveStats] = useState<GitHubStats | null>(null)
   const [featured, setFeatured] = useState<Project[]>([])
 
@@ -46,8 +83,19 @@ export function Home() {
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 space-y-12">
 
-      {/* Hero */}
-      <section className="flex flex-col sm:flex-row gap-8 items-start">
+      {/* Hero — browser frame */}
+      <section className="rounded-2xl border border-[var(--color-border)] overflow-hidden shadow-2xl">
+        {/* Browser chrome */}
+        <div className="flex items-center gap-2 bg-[var(--color-secondary)] px-4 py-3 border-b border-[var(--color-border)]">
+          <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+          <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+          <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+          <div className="ml-3 flex-1 rounded-md bg-[var(--color-background)] px-3 py-1 text-xs text-[var(--color-muted-foreground)] text-center">
+            iantolentino.dev
+          </div>
+        </div>
+        <div className="bg-[var(--color-card)] p-6 sm:p-10">
+        <div className="flex flex-col sm:flex-row gap-8 items-start">
         <div className="shrink-0">
           <div className="relative">
             <img
@@ -70,6 +118,12 @@ export function Home() {
             <p className="mt-1 text-lg text-[var(--color-primary)] font-medium">
               Full-Stack Web Developer
             </p>
+            {/* Terminal typewriter line */}
+            <div className="mt-3 inline-flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-1.5 font-mono text-sm">
+              <span className="text-[var(--color-success)]">&gt;</span>
+              <span className="text-[var(--color-foreground)]">I {typed}</span>
+              <span className="inline-block w-0.5 h-4 bg-[var(--color-primary)]" style={{ animation: 'blink 1s step-end infinite' }} />
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-3 text-sm text-[var(--color-muted-foreground)]">
@@ -107,6 +161,7 @@ export function Home() {
             </Button>
           </div>
         </div>
+        </div>
       </section>
 
       {/* Stats */}
@@ -120,7 +175,12 @@ export function Home() {
       </div>
 
       {/* What I do */}
-      <section className="grid sm:grid-cols-3 gap-4">
+      <section className="space-y-4">
+        <div className="text-center space-y-2">
+          <SectionLabel>Services</SectionLabel>
+          <h2 className="text-xl font-bold text-[var(--color-foreground)]">What I Do</h2>
+        </div>
+        <div className="grid sm:grid-cols-3 gap-4">
         {[
           { icon: Server, title: 'Backend & APIs', desc: 'REST APIs with Python (Flask, FastAPI), JWT auth, async patterns, and PostgreSQL.' },
           { icon: Code2, title: 'Full-Stack Dev', desc: 'Frontend with React & TypeScript paired with solid server-side foundations.' },
@@ -136,15 +196,19 @@ export function Home() {
             <CardContent><CardDescription>{desc}</CardDescription></CardContent>
           </Card>
         ))}
+        </div>
       </section>
 
       {/* Featured Projects */}
       <section>
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-xl font-bold text-[var(--color-foreground)]">Featured Projects</h2>
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/projects">All Projects <ArrowRight size={14} /></Link>
-          </Button>
+        <div className="mb-6 text-center space-y-2">
+          <SectionLabel>Work</SectionLabel>
+          <div className="flex items-center justify-between mt-2">
+            <h2 className="text-xl font-bold text-[var(--color-foreground)]">Featured Projects</h2>
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/projects">All Projects <ArrowRight size={14} /></Link>
+            </Button>
+          </div>
         </div>
 
         <div className="grid sm:grid-cols-3 gap-4">
@@ -163,9 +227,15 @@ export function Home() {
             : featured.map((proj) => (
                 <Card
                   key={proj.name}
-                  className="flex flex-col hover:border-[var(--color-primary)]/40 hover:-translate-y-1 cursor-pointer"
+                  className="flex flex-col overflow-hidden hover:border-[var(--color-primary)]/40 hover:-translate-y-1 cursor-pointer p-0"
                   onClick={() => window.open(proj.url, '_blank', 'noopener,noreferrer')}
                 >
+                  <img
+                    src={`https://opengraph.githubassets.com/portfolio/iantolentino/${proj.name}`}
+                    alt={proj.name}
+                    className="w-full h-32 object-cover border-b border-[var(--color-border)]"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  />
                   <CardHeader>
                     <div className="flex items-start justify-between gap-2">
                       <CardTitle className="text-base leading-snug">{proj.name}</CardTitle>

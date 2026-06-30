@@ -55,7 +55,8 @@ export function Projects() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 space-y-8">
-      <div>
+      <div className="space-y-2">
+        <span className="inline-block rounded-full border border-[var(--color-primary)]/25 bg-[var(--color-primary)]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">Work</span>
         <h1 className="text-3xl font-bold text-[var(--color-foreground)] tracking-tight">Projects</h1>
         <p className="mt-1 text-[var(--color-muted-foreground)]">
           {loading ? 'Loading from GitHub...' : `${projects.length} projects across all categories`}
@@ -131,9 +132,15 @@ export function Projects() {
           {filtered.map((proj) => (
             <Card
               key={proj.name}
-              className="flex flex-col hover:border-[var(--color-primary)]/40 hover:-translate-y-1 cursor-pointer"
+              className="flex flex-col overflow-hidden hover:border-[var(--color-primary)]/40 hover:-translate-y-1 cursor-pointer p-0"
               onClick={() => window.open(proj.url, '_blank', 'noopener,noreferrer')}
             >
+              <img
+                src={`https://opengraph.githubassets.com/portfolio/iantolentino/${proj.name}`}
+                alt={proj.name}
+                className="w-full h-28 object-cover border-b border-[var(--color-border)]"
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+              />
               <CardHeader>
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-base leading-snug">{proj.name}</CardTitle>
