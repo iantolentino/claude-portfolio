@@ -7,10 +7,11 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { fetchGitHubProjects, type Project, type CategoryClass } from '@/lib/github'
 
-type FilterKey = 'all' | CategoryClass
+type FilterKey = 'all' | 'live' | CategoryClass
 
 const FILTERS: { key: FilterKey; label: string }[] = [
   { key: 'all', label: 'All' },
+  { key: 'live', label: 'Live' },
   { key: 'web-apps', label: 'Web Apps' },
   { key: 'python', label: 'Python' },
   { key: 'desktop', label: 'Desktop' },
@@ -20,9 +21,10 @@ const FILTERS: { key: FilterKey; label: string }[] = [
 ]
 
 function getCounts(projects: Project[]): Record<FilterKey, number> {
-  const counts: Record<string, number> = { all: projects.length }
+  const counts: Record<string, number> = { all: projects.length, live: 0 }
   for (const p of projects) {
     counts[p.categoryClass] = (counts[p.categoryClass] || 0) + 1
+    if (p.homepage) counts.live = (counts.live || 0) + 1
   }
   return counts as Record<FilterKey, number>
 }
@@ -43,7 +45,7 @@ export function Projects() {
   const counts = getCounts(projects)
 
   const filtered = projects.filter((p) => {
-    const matchCat = active === 'all' || p.categoryClass === active
+    const matchCat = active === 'all' || (active === 'live' ? !!p.homepage : p.categoryClass === active)
     const q = query.toLowerCase()
     const matchSearch =
       q === '' ||
