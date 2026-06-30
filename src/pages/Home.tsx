@@ -162,6 +162,7 @@ export function Home() {
           </div>
         </div>
         </div>
+        </div>
       </section>
 
       {/* Stats */}
