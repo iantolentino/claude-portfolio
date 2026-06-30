@@ -247,12 +247,7 @@ export function Home() {
                   <CardContent className="flex-1 px-4 pb-2">
                     <div className="flex flex-wrap gap-1.5">
                       <Badge variant="default" className="text-[10px]">{proj.language}</Badge>
-                      {proj.category !== proj.language && (
-                        <Badge variant="secondary" className="text-[10px]">{proj.category}</Badge>
-                      )}
-                      {proj.homepage && (
-                        <Badge variant="success" className="text-[10px]">Live</Badge>
-                      )}
+                      <Badge variant="secondary" className="text-[10px]">{proj.category}</Badge>
                     </div>
                   </CardContent>
                   <CardFooter className="px-4 pb-3 text-xs text-[var(--color-muted-foreground)]">
